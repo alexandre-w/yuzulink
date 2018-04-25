@@ -1,21 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs')
-const path = require('path')
-const morgan = require('morgan');
 const app = express();
 const api = require('./api/api');
 const err = require('./middleware/err');
 
 
-app.use(morgan('dev'));
-app.use(express.static('client'));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+// Setup the middleware
+const middleware = require('./middleware/middleware')(app);
 
-// setup the logger
-// var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
-// app.use(morgan('combined', {stream: accessLogStream}));
 
 // setup the api
 app.use('/api/', api);
