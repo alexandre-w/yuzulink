@@ -1,10 +1,16 @@
 const postRouter = require('Express').Router();
+const baseController = require('../baseController');
+const postController = require('./postController');
 
+postRouter.param('id', postController.param);
 
 postRouter.route('/')
-  .get(function(req, res){
-    res.send('All the posts')
-  });
+  .get(baseController.getAll('post'))
+  .post(baseController.post('post'));
 
+postRouter.route('/:id')
+  .get(postController.getOne)
+  .put(postController.put)
+  .delete(postController.delete);
 
-  module.exports = postRouter;
+module.exports = postRouter;
