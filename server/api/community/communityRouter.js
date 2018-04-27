@@ -11,6 +11,6 @@ communityRouter.route('/')
 communityRouter.route('id')
   .get(communityController.getOne)
   .put(communityController.put)
-  .delete(communityController.remove);
+  .delete(communityController.delete);
 
 module.exports = communityRouter ;
