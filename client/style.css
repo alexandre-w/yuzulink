@@ -1,0 +1,26 @@
+.bd-sidebar{
+  position:sticky;
+  top: 4rem;
+  z-index: 1000;
+  height: calc(100vh - 4rem);
+  order: 0;
+}
+
+
+.bd-content{
+  order: 1;
+}
+
+.bd-links{
+  display: block!important;
+}
+
+.bd-toc-link{
+  color: black;
+}
+
+
+.bd-toc-link:hover{
+  color: black;
+  text-decoration: none;
+}
