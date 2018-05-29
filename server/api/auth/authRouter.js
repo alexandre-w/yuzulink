@@ -1,14 +1,20 @@
 const authRouter = require('express').Router();
 const authController = require('./authController');
+const passport = require("passport");
 
 
 authRouter.route('/login')
-  .post(authController.login);
+  .get(authController.login);
 
 authRouter.route('/logout')
-  .post(authController.logout);
+  .get(authController.logout);
+
 
 authRouter.route('/google')
-  .post(authController.google);
+  .get(authController.google);
+
+authRouter.route('/google/redirect')
+  .get(authController.googleRedirect);
+  
 
 module.exports = authRouter ;

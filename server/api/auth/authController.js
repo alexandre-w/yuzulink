@@ -1,12 +1,15 @@
+const passport = require("passport");
+
 exports.login = function(req, res, next) {
     res.json('auth login');
   };
 
-exports.logout = function(res, req, next){
+exports.logout = function(req, res, next){
     res.json('auth logout api');
 }
 
+exports.google = passport.authenticate('google', { scope: ['profile'] } ) ;
 
-exports.google = function(res, req, next){
-    res.json('google login api');
+exports.googleRedirect = function(req, res, next){
+    res.json('Auth oK, redirect from google');
 }
