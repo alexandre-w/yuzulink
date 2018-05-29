@@ -2,7 +2,7 @@ const userModel = require('./userModel');
 const _ = require('lodash');
 
 
-exports.param = function(req, res, next, id){
+exports.param = function(req, res, next, id) {
   userModel.findById(id)
   .then(function(user){
     if(!user){
@@ -16,12 +16,12 @@ exports.param = function(req, res, next, id){
   });
 };
 
-exports.getOne = function(req, res, next){
+exports.getOne = function(req, res, next) {
   let user = req.user;
   res.json(user);
 };
 
-exports.put = function(req, res, next){
+exports.put = function(req, res, next) {
   // User from DB
   let user = req.user;
   // New user
