@@ -11,10 +11,10 @@ authRouter.route('/logout')
 
 
 authRouter.route('/google')
-  .get(authController.google);
+  .get(passport.authenticate('google', { scope: ['profile', 'email'] } ));
 
 authRouter.route('/google/redirect')
-  .get(authController.googleRedirect);
+  .get(passport.authenticate('google'), authController.googleRedirect);
   
 
 module.exports = authRouter ;

@@ -4,10 +4,10 @@ const _ = require('lodash');
 
 exports.param = function(req, res, next, id) {
   userModel.findById(id)
-  .then(function(user){
-    if(!user){
+  .then(function(user) {
+    if(!user) {
       next(new Error('No user for this Id'));
-    }else {
+    } else {
       req.user = user;
       next();
     }
@@ -29,11 +29,32 @@ exports.put = function(req, res, next) {
 
   _.merge(user, updateUser);
 
-  user.save(function(err, saved){
-    if(err){
+  user.save(function(err, saved) {
+    if(err) {
       next(err);
-    }else {
+    } else {
       res.json(saved);
     }
   });
 };
+
+exports.findOrCreateWithGoogleId = function(profile, cb) {
+
+    userModel.findOne({'googleId': profile.id})
+    .then(function(user) {
+      if(user) {
+        console.log('user exists');
+        cb(null, user);
+      } else {
+        newUser = new userModel({
+          googleId: profile.id,
+          name: profile.displayName
+        });
+        newUser.save(function(err, saved) {
+          console.log('new user created');
+          cb(err, saved);
+        });
+      }
+    });
+}
+
